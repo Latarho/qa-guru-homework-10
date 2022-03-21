@@ -1,7 +1,9 @@
 package test;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.AttachHelper;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,7 @@ public class PracticeFormTests {
     String email = "latarho@mail.ru";
     String mobileNumber = "8800555555";
     String subject = "Accounting";
-    String pictureName = "test.jpg";
+//    String pictureName = "test.jpg";
     String address = "Moscow, Surikova street";
     String headerFormTitle = "Thanks for submitting the form";
 
@@ -46,6 +48,8 @@ public class PracticeFormTests {
 
     @Test
     public void fillAllFieldsPracticeFormTest()  {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         step("Открыть страницу", () -> {
             practiceFormPage.openPage();
         });
