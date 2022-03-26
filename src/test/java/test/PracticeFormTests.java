@@ -27,14 +27,20 @@ public class PracticeFormTests {
 
     @BeforeAll
     static void beforeAll() {
+        String user = System.getProperty("user");
+        String password = System.getProperty("password");
+        String browserSize = System.getProperty("browserSize");
+
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = browserSize;
+        Configuration.remote = "https://" + user + ":" + password + "@selenoid.autotests.cloud/wd/hub";
+
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 
     @AfterEach
